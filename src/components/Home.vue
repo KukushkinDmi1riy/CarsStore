@@ -53,7 +53,8 @@
                 Open
               </v-btn>
 
-              <v-btn raised class="primary">
+              <v-btn raised color="deep-purple"
+              dark>
                 Buy
               </v-btn>
 

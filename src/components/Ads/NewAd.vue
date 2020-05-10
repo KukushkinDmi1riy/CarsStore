@@ -1,8 +1,66 @@
 <template>
   <v-container>
     <v-layout row>
-      <v-flex xs12>
-        <h1>New Ad</h1>
+      <v-flex xs12 sm6 offset-sm3 >
+        <h1 class="text--secondary mb-3"> Create new Ad</h1>
+         <v-form ref="form"
+                  class="mb-3"
+                  v-model="valid"
+                  validation>
+                  <v-text-field
+                    label="Title"
+                    name="title"
+                    type="text"
+                    v-model="title"
+                    required
+                    :rules="[v=> !!v || 'Title is required']"
+                  ></v-text-field>
+                  <v-textarea
+                    name="description"
+                    label="Description"
+                    type="text"
+                    auto-grow
+                    placeholder="Enter description, please"
+                    v-model="description"
+                    :rules="[v=> !!v || 'Description is required']"
+                  ></v-textarea>
+                </v-form>
+                <v-layout row class="mb-3">
+                  <v-flex>
+                    <v-btn
+                      color="#FDED48"
+                      class="ma-2 deep-purple--text"
+                    >
+                      Upload
+                      <v-icon right dark>mdi-cloud-upload</v-icon>
+                    </v-btn>
+                  </v-flex>
+                </v-layout>
+
+                <v-layout row>
+                  <v-flex>
+                    <img src="" height="100">
+                  </v-flex>
+                </v-layout>
+
+                <v-layout row>
+                  <v-switch
+                    color="deep-purple"
+                    v-model="promo"
+                    label="Add to promo?"
+                  ></v-switch>
+                </v-layout>
+
+                <v-layout row>
+                  <v-flex>
+                    <v-spacer> </v-spacer>
+                    <v-btn
+                      :disabled="!valid"
+                      class="success"
+                      @click="createAd"
+                      > Create ad </v-btn>
+                  </v-flex>
+                </v-layout>
       </v-flex>
     </v-layout>
   </v-container>
@@ -12,7 +70,24 @@
 export default {
   data(){
     return {
+      title: '',
+      description: '',
+      promo: false,
+      valid: false,
+    }
+  },
+  methods: {
+    createAd(){
+      if (this.$refs.form.validate()){
 
+        const ad={
+          title: this.title,
+          description: this.description,
+          promo: this.promo
+        }
+        console.log(ad);
+
+      }
     }
   }
 }
