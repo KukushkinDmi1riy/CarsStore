@@ -4,12 +4,12 @@
       <v-flex xs12>
         <v-card>
           <v-img
-          src="https://cdn.vuetifyjs.com/images/carousel/planet.jpg"
+          :src="ad.url"
           height="300px"
           > </v-img>
           <v-card-text>
-            <h1>Lorem</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui, itaque.</p>
+            <h1>{{ad.title}}</h1>
+            <p>{{ad.description}}</p>
           </v-card-text>
           <v-card-actions>
             <v-spacer> </v-spacer>
@@ -23,10 +23,16 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex';
 export default {
-  data(){
-    return {
+  props: ['id'],
+  computed: {
+    ...mapGetters('ads',['adById']),
+    ad() {
+      const id=this.id;
+      console.log(id);
 
+      return this.adById(id)
     }
   }
 }

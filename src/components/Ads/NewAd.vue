@@ -67,8 +67,11 @@
 </template>
 
 <script>
+
+import {mapActions} from 'vuex';
+
 export default {
-  data(){
+  data() {
     return {
       title: '',
       description: '',
@@ -77,16 +80,19 @@ export default {
     }
   },
   methods: {
+    ...mapActions('aps', ['createAd']),
     createAd(){
       if (this.$refs.form.validate()){
 
-        const ad={
+        const newAd = {
           title: this.title,
           description: this.description,
-          promo: this.promo
+          promo: this.promo,
+          url: 'https://i.morioh.com/7bba791a17.png'
         }
-        console.log(ad);
-
+        console.log(newAd);
+        // this.$store.dispatch('newAd', newAd)  //не определяет newAd
+        this.createAd(newAd)
       }
     }
   }
