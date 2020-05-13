@@ -5,7 +5,7 @@
         <v-flex xs12>
           <v-carousel>
             <v-carousel-item
-              v-for="(ad, key) in ads"
+              v-for="(ad, key) in promoAds"
               :key="key"
               :src="ad.url"
             >
@@ -67,41 +67,10 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
-  data(){
-    return {
-      ads: [
-        {
-          title: 'Ad first',
-          description: 'Lorem',
-          promo: false,
-          url: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg',
-          id: "123"
-        },
-         {
-          title: 'Ad second',
-          description: 'Lorem 2',
-          promo: true,
-          url: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg',
-          id: "1234"
-        },
-         {
-          title: 'Ad third',
-          description: 'Lorem 3',
-          promo: true,
-          url: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg',
-          id: "12345"
-        },
-        {
-          title: 'Ad second',
-          description: 'Lorem 2',
-          promo: true,
-          url: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg',
-          id: "123456"
-        },
-      ]
-
-    }
+  computed: {
+    ...mapGetters('ads', ['promoAds', 'ads'])
   }
 }
 </script>
